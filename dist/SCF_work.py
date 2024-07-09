@@ -12,11 +12,11 @@ import json, random, requests, time
 from typing import List
 
 # ======== CONSTANT ========
-sign_url = 'https://www.tsdm39.net/plugin.php?id=dsu_paulsign:sign'
-work_url = 'https://www.tsdm39.net/plugin.php?id=np_cliworkdz:work'
-login_url = 'https://www.tsdm39.net/member.php?mod=logging&action=login'
+sign_url = 'https://www.tsdm39.com/plugin.php?id=dsu_paulsign:sign'
+work_url = 'https://www.tsdm39.com/plugin.php?id=np_cliworkdz:work'
+login_url = 'https://www.tsdm39.com/member.php?mod=logging&action=login'
 
-tsdm_domain = ".tsdm39.net"
+tsdm_domain = ".tsdm39.com"
 s1_domain = "bbs.saraba1st.com"
 
 
@@ -38,7 +38,7 @@ def get_cookies_all():
 
 def get_cookies_by_domain(domain: str):
     """从所有cookie里分离出指定域名的cookie
-    domain: cookie_list domain, (".tsdm39.net")
+    domain: cookie_list domain, (".tsdm39.com")
     """
     cookies_all = get_cookies_all()  # { username: [cookie_list] }
     domain_cookies = {}
@@ -69,10 +69,10 @@ def work_single_post(cookie: List):
     # 必须要这个content-type, 否则没法接收
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko',
-        'cookie_list': cookie_serialized,
+        'cookie': cookie_serialized,
         'connection': 'Keep-Alive',
         'x-requested-with': 'XMLHttpRequest',
-        'referer': 'https://www.tsdm39.net/plugin.php?id=np_cliworkdz:work',
+        'referer': 'https://www.tsdm39.com/plugin.php?id=np_cliworkdz:work',
         'content-type': 'application/x-www-form-urlencoded'
     }
 
@@ -130,7 +130,6 @@ def work_multi_post():
 
     print("POST方式: 全部打工完成")
     return
-
 
 def main_handler(event, context):
     work_multi_post()
